@@ -1,6 +1,7 @@
 <?php
 require 'koneksi.php';
 
+
 $result = mysqli_query($conn, "SELECT * FROM buku");
 
 
@@ -36,7 +37,7 @@ $result = mysqli_query($conn, "SELECT * FROM buku");
     <form action="">
         <div class="container">
             <a href="tambah.php"><button type="button" class="btn btn-success btn-sm mt-2">Tambah</button></a>
-            <button type="button" class="btn btn-danger btn-sm mt-2">Logout</button>
+            <a href="logout.php"><button type="button" class="btn btn-danger btn-sm mt-2">Logout</button></a>
             <table class="table table-bordered text-center mt-2">
                 <thead class="table-primary">
                     <tr>
@@ -58,8 +59,8 @@ $result = mysqli_query($conn, "SELECT * FROM buku");
                             <td><?= $b['tahun']; ?></td>
                             <td><?= $b['kategori']; ?></td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-sm">Edit</button>
-                                <button type="button" class="btn btn-danger btn-sm">Hapus</button>
+                                <a href="edit.php?id=<?= $b['id']; ?>"><button type="button" class="btn btn-warning btn-sm">Edit</button></a>
+                                <a href="hapus.php?id=<?= $b['id']; ?>" onclick="return confirm('Yakin mau dihapus');"><button type="button" class="btn btn-danger btn-sm">Hapus</button></a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
