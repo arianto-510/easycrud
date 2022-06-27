@@ -1,3 +1,13 @@
+<?php
+require 'koneksi.php';
+
+$result = mysqli_query($conn, "SELECT * FROM buku");
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,30 +33,41 @@
     <!-- end header -->
 
     <!-- table -->
-    <div class="container">
-        <table class="table table-bordered text-center mt-2">
-            <thead class="table-primary">
-                <tr>
-                    <th>ID</th>
-                    <th>Judul</th>
-                    <th>Pengarang</th>
-                    <th>Tahun</th>
-                    <th>Kategori</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Pemrograman Web</td>
-                    <td>Didik Setiawan</td>
-                    <td>2020</td>
-                    <td>Pendidikan</td>
-                    <td>Hapus | Edit</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <form action="">
+        <div class="container">
+            <a href="tambah.php"><button type="button" class="btn btn-success btn-sm mt-2">Tambah</button></a>
+            <button type="button" class="btn btn-danger btn-sm mt-2">Logout</button>
+            <table class="table table-bordered text-center mt-2">
+                <thead class="table-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Judul</th>
+                        <th>Pengarang</th>
+                        <th>Tahun</th>
+                        <th>Kategori</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php while ($b = mysqli_fetch_assoc($result)) : ?>
+                        <tr>
+                            <td><?= $i++; ?></td>
+                            <td><?= $b['judul']; ?></td>
+                            <td><?= $b['pengarang']; ?></td>
+                            <td><?= $b['tahun']; ?></td>
+                            <td><?= $b['kategori']; ?></td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Hapus</button>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+    </form>
+    <!-- emd table -->
 
 
     <!-- script bootstrap js -->
